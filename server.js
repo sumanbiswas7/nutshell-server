@@ -1,10 +1,11 @@
 const { ApolloServer } = require("apollo-server");
 const { typeDefs } = require("./typedefs");
-const { resolvers } = require("./resolvers/dishResolver");
+const { dishServerResolvers } = require("./resolvers/dishServerResolver");
+const { dishLocalResolvers } = require("./resolvers/dishLocalResolver");
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: dishServerResolvers,
   cors: {
     origin: "*",
     credentials: true,

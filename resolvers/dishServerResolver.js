@@ -1,5 +1,5 @@
-// import { app } from "../firebase";
-const { app } = require("../firebase");
+// const { app } = require("../firebase");
+require("../firebase");
 const {
   getFirestore,
   collection,
@@ -8,10 +8,11 @@ const {
   orderBy,
   doc,
   addDoc,
+  getDoc,
   updateDoc,
 } = require("firebase/firestore");
 
-const resolvers = {
+const dishServerResolvers = {
   Query: {
     dishes: async () => {
       try {
@@ -28,16 +29,28 @@ const resolvers = {
         console.error(`QueryError: (dishes) ${error}`);
       }
     },
+    getDish: async (parent, args, ctx) => {
+      try {
+        const docRef = doc(getFirestore(), "dishes", args.id);
+        const docSnap = await getDoc(docRef);
+        return docSnap.data();
+      } catch (error) {
+        console.error(`QueryError: (getDish) ${error}`);
+      }
+    },
   },
   Mutation: {
     addDish: async (parent, args, ctx) => {
       try {
-        const { name } = args.dish;
+        const { name, description, image, price, type } = args.dish;
         const res = await addDoc(collection(getFirestore(), "dishes"), {
-          name: name,
+          name,
+          description,
+          image,
+          price,
+          type,
           timestamp: new Date(),
         });
-        console.log("Added document with ID: ", res.id);
         const newDocRef = doc(getFirestore(), "dishes", res.id);
         await updateDoc(newDocRef, {
           id: res.id,
@@ -50,4 +63,4 @@ const resolvers = {
   },
 };
 
-module.exports = { resolvers };
+module.exports = { dishServerResolvers };

@@ -19,11 +19,11 @@ const typeDefs = gql`
   input DishInput {
     id: ID
     name: String!
-    # description: String!
-    # image: String!
-    # price: Int!
-    # type: String!
-    # timestamp: String!
+    description: String!
+    image: String!
+    price: Int!
+    type: String!
+    timestamp: String
   }
 
   type Mutation {
