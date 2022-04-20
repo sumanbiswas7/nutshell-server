@@ -3,6 +3,8 @@ const { typeDefs } = require("./typedefs");
 const { dishServerResolvers } = require("./resolvers/dishServerResolver");
 const { dishLocalResolvers } = require("./resolvers/dishLocalResolver");
 
+// https://nutshell-server-api.herokuapp.com/
+
 const server = new ApolloServer({
   typeDefs,
   resolvers: dishServerResolvers,
