@@ -32,7 +32,7 @@ const dishes = [
     description: "super healthy salad",
     image:
       "https://loveincorporated.blob.core.windows.net/contentimages/gallery/d9e900e4-212e-4c3d-96d5-cb14a023c659-worlds-most-delicious-dishes.jpg",
-    type: "main",
+    type: "starter",
     id: 4,
   },
 ];

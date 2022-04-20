@@ -14,6 +14,7 @@ const typeDefs = gql`
   type Query {
     dishes: [Dish]
     getDish(id: ID!): Dish
+    getByType(type: String!): [Dish]
   }
 
   input DishInput {

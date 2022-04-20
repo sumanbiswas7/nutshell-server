@@ -6,6 +6,7 @@ const {
   getDocs,
   query,
   orderBy,
+  where,
   doc,
   addDoc,
   getDoc,
@@ -37,6 +38,21 @@ const dishServerResolvers = {
         return docSnap.data();
       } catch (error) {
         console.error(`QueryError: (getDish) ${error}`);
+      }
+    },
+    getByType: async (parent, args, ctx) => {
+      try {
+        const dishesRef = collection(getFirestore(), "dishes");
+        const querySnapshot = await getDocs(
+          query(dishesRef, where("type", "==", args.type))
+        );
+        const POSTS = [];
+        querySnapshot.forEach((doc) => {
+          POSTS.push(doc.data());
+        });
+        return POSTS;
+      } catch (error) {
+        console.error(`QueryError: (getByType) ${error}`);
       }
     },
   },
