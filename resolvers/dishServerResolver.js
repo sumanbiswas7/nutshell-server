@@ -10,6 +10,7 @@ const {
   addDoc,
   getDoc,
   updateDoc,
+  deleteDoc,
 } = require("firebase/firestore");
 
 const dishServerResolvers = {
@@ -58,6 +59,14 @@ const dishServerResolvers = {
         return `Dish sucessfuly added with ID: ${res.id}`;
       } catch (error) {
         console.error(`MutationError: (addDish) ${error}`);
+      }
+    },
+    deleteDish: async (parent, args, ctx) => {
+      try {
+        await deleteDoc(doc(getFirestore(), "dishes", args.id));
+        return `Dish with ID: ${args.id} deleted successfully`;
+      } catch (error) {
+        console.error(`MutationError: (deleteDish) ${error}`);
       }
     },
   },
