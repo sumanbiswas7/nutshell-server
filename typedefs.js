@@ -27,10 +27,20 @@ const typeDefs = gql`
     timestamp: String
   }
 
+  input updateDishInput {
+    id: ID!
+    name: String
+    description: String
+    image: String
+    price: Int
+    type: String
+    timestamp: String
+  }
+
   type Mutation {
-    addDish(dish: DishInput): String
+    addDish(dish: DishInput!): String
     deleteDish(id: ID!): String
-    updateDish(dish: DishInput): String
+    updateDish(dish: updateDishInput!): String
   }
 `;
 

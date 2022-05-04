@@ -85,6 +85,16 @@ const dishServerResolvers = {
         console.error(`MutationError: (deleteDish) ${error}`);
       }
     },
+    updateDish: async (parent, args, ctx) => {
+      try {
+        const { id } = args.dish;
+        const docRef = doc(getFirestore(), "dishes", id);
+        await updateDoc(docRef, args.dish);
+        return `Dish with ID: ${id} updated successfully`;
+      } catch (error) {
+        console.error(`MutationError: (updateDish) ${error}`);
+      }
+    },
   },
 };
 
