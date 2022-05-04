@@ -30,6 +30,7 @@ const typeDefs = gql`
   type Mutation {
     addDish(dish: DishInput): String
     deleteDish(id: ID!): String
+    updateDish(dish: DishInput): String
   }
 `;
 

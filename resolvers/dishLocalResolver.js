@@ -11,7 +11,9 @@ const dishLocalResolvers = {
     },
   },
   Mutation: {
-    addDish: () => `You can not add dish on local versions`,
+    addDish: () => `You can not add dish on local-server version`,
+    deleteDish: () => `You can not delete dish on local-server version`,
+    updateDish: () => `You can not update dish on local-server version`,
   },
 };
 
